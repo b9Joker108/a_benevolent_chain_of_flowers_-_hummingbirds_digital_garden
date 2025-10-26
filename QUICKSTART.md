@@ -53,7 +53,7 @@ Create a new `.md` file in the appropriate directory with this structure:
 ```markdown
 ---
 title: Your Title Here
-date: 2024-01-15
+date: 2025-10-26
 tags: [tag1, tag2]
 ---
 
