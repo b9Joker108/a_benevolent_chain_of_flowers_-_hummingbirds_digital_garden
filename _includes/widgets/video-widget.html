@@ -1,0 +1,73 @@
+<!--
+  Video Widget - Supports YouTube embeds and HTML5 video
+  
+  Parameters:
+    - id: unique identifier for the video element
+    - title: video title (for accessibility)
+    - source: video source URL (YouTube URL or direct video file)
+    - poster: poster/thumbnail image URL (optional)
+    - caption: caption text (optional)
+    - caption_url: URL for caption link (optional)
+  
+  Usage:
+    {% include widgets/video-widget.html 
+       id="my-video" 
+       title="Demo Video" 
+       source="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+       caption="Watch this demo" %}
+-->
+
+{% assign video_id = include.id | default: "video-" | append: forloop.index %}
+{% assign video_title = include.title | default: "Video" %}
+{% assign video_source = include.source %}
+{% assign video_poster = include.poster %}
+{% assign video_caption = include.caption %}
+{% assign caption_url = include.caption_url %}
+
+<div class="video-widget" id="{{ video_id }}-container">
+  {% if video_source contains "youtube.com" or video_source contains "youtu.be" %}
+    <!-- YouTube Video Embed with lazy loading -->
+    {% if video_source contains "youtu.be" %}
+      {% assign video_code = video_source | split: "youtu.be/" | last | split: "?" | first %}
+    {% elsif video_source contains "watch?v=" %}
+      {% assign video_code = video_source | split: "watch?v=" | last | split: "&" | first %}
+    {% elsif video_source contains "embed/" %}
+      {% assign video_code = video_source | split: "embed/" | last | split: "?" | first %}
+    {% endif %}
+    
+    <div class="video-responsive">
+      <iframe 
+        id="{{ video_id }}"
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/{{ video_code }}" 
+        title="{{ video_title }}"
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  {% else %}
+    <!-- HTML5 Video Player -->
+    <video 
+      id="{{ video_id }}"
+      class="video-player"
+      controls
+      {% if video_poster %}poster="{{ video_poster }}"{% endif %}
+      preload="metadata">
+      <source src="{{ video_source }}" type="video/mp4">
+      <p>Your browser doesn't support HTML5 video. Here is a <a href="{{ video_source }}">link to the video</a> instead.</p>
+    </video>
+  {% endif %}
+  
+  {% if video_caption %}
+    <div class="video-caption">
+      {% if caption_url %}
+        <a href="{{ caption_url }}">{{ video_caption }}</a>
+      {% else %}
+        {{ video_caption }}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

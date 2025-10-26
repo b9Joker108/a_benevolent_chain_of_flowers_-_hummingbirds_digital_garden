@@ -1,0 +1,58 @@
+<!--
+  Audio Widget - Supports streaming audio playback
+  
+  Parameters:
+    - id: unique identifier for the audio element
+    - title: audio title (for accessibility)
+    - source: audio source URL (direct audio file or streaming URL)
+    - caption: caption text (optional)
+    - caption_url: URL for caption link (optional)
+    - autoplay: whether to autoplay (default: false)
+  
+  Usage:
+    {% include widgets/audio-widget.html 
+       id="my-audio" 
+       title="Podcast Episode" 
+       source="/assets/audio/episode.mp3"
+       caption="Listen to our latest episode" %}
+  
+  Note: This widget uses placeholder references only. Actual audio files should be
+        managed via Git LFS and referenced from external storage.
+-->
+
+{% assign audio_id = include.id | default: "audio-" | append: forloop.index %}
+{% assign audio_title = include.title | default: "Audio" %}
+{% assign audio_source = include.source %}
+{% assign audio_caption = include.caption %}
+{% assign caption_url = include.caption_url %}
+{% assign audio_autoplay = include.autoplay | default: false %}
+
+<div class="audio-widget" id="{{ audio_id }}-container">
+  <div class="audio-player-wrapper">
+    <audio 
+      id="{{ audio_id }}"
+      class="audio-player"
+      controls
+      {% if audio_autoplay %}autoplay{% endif %}
+      preload="metadata">
+      <source src="{{ audio_source }}" type="audio/mpeg">
+      <source src="{{ audio_source }}" type="audio/ogg">
+      <source src="{{ audio_source }}" type="audio/wav">
+      <p>Your browser doesn't support HTML5 audio. Here is a <a href="{{ audio_source }}">link to the audio file</a> instead.</p>
+    </audio>
+    
+    {% if audio_title %}
+      <div class="audio-title">{{ audio_title }}</div>
+    {% endif %}
+  </div>
+  
+  {% if audio_caption %}
+    <div class="audio-caption">
+      {% if caption_url %}
+        <a href="{{ caption_url }}">{{ audio_caption }}</a>
+      {% else %}
+        {{ audio_caption }}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
