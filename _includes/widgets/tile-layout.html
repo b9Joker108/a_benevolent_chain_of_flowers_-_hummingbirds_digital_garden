@@ -1,0 +1,78 @@
+<!--
+  Tile Layout - Grid/masonry layout for content tiles
+  
+  Parameters:
+    - columns: number of columns (default: 3, options: 1, 2, 3, 4)
+    - gap: gap size between tiles (default: medium, options: small, medium, large)
+    - style: layout style (default: grid, options: grid, masonry)
+    - content: the content to be laid out in tiles (should contain tile elements)
+  
+  Usage in a page:
+    Set in front matter:
+    ---
+    layout: tile-layout
+    tile_columns: 3
+    tile_gap: medium
+    ---
+    
+    Or use as HTML div:
+    <div class="tile-layout tile-layout-grid tile-columns-3 tile-gap-medium">
+      <div class="tile">Content 1</div>
+      <div class="tile">Content 2</div>
+    </div>
+  
+  Note: Tiles should be wrapped in elements with class "tile"
+-->
+
+{% assign tile_columns = include.columns | default: 3 %}
+{% assign tile_gap = include.gap | default: "medium" %}
+{% assign tile_style = include.style | default: "grid" %}
+
+<div class="tile-layout tile-layout-{{ tile_style }} tile-columns-{{ tile_columns }} tile-gap-{{ tile_gap }}">
+  {{ include.content }}
+</div>
+
+<style>
+  .tile-layout {
+    display: grid;
+    width: 100%;
+  }
+  
+  /* Column configurations */
+  .tile-columns-1 { grid-template-columns: 1fr; }
+  .tile-columns-2 { grid-template-columns: repeat(2, 1fr); }
+  .tile-columns-3 { grid-template-columns: repeat(3, 1fr); }
+  .tile-columns-4 { grid-template-columns: repeat(4, 1fr); }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .tile-columns-4 { grid-template-columns: repeat(2, 1fr); }
+    .tile-columns-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 768px) {
+    .tile-columns-4,
+    .tile-columns-3,
+    .tile-columns-2 { grid-template-columns: 1fr; }
+  }
+  
+  /* Gap configurations */
+  .tile-gap-small { gap: 0.5rem; }
+  .tile-gap-medium { gap: 1rem; }
+  .tile-gap-large { gap: 2rem; }
+  
+  /* Masonry layout (CSS Grid approach) */
+  .tile-layout-masonry {
+    grid-auto-rows: 10px;
+  }
+  
+  .tile-layout .tile {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  
+  .tile-layout-grid .tile {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

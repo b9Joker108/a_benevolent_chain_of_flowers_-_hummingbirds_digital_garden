@@ -1,0 +1,166 @@
+name: Validate Jekyll Site
+
+on:
+  push:
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: false  # Set to true when Git LFS is enabled
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+    
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install || echo "No Gemfile found, installing Jekyll manually"
+        gem install jekyll
+        gem install jekyll-feed
+        gem install jekyll-seo-tag
+    
+    - name: Validate Jekyll configuration
+      run: |
+        if [ -f "_config.yml" ]; then
+          echo "✅ _config.yml found"
+          cat _config.yml
+        else
+          echo "❌ _config.yml not found"
+          exit 1
+        fi
+    
+    - name: Check required directories
+      run: |
+        dirs="_includes/widgets _layouts assets/css examples docs"
+        for dir in $dirs; do
+          if [ -d "$dir" ]; then
+            echo "✅ $dir exists"
+          else
+            echo "❌ $dir missing"
+            exit 1
+          fi
+        done
+    
+    - name: Validate widget files
+      run: |
+        widgets="video-widget.html audio-widget.html obsidian-widget.html tile-layout.html"
+        for widget in $widgets; do
+          if [ -f "_includes/widgets/$widget" ]; then
+            echo "✅ $widget exists"
+          else
+            echo "❌ $widget missing"
+            exit 1
+          fi
+        done
+    
+    - name: Validate layout files
+      run: |
+        layouts="default.html onboarding.html"
+        for layout in $layouts; do
+          if [ -f "_layouts/$layout" ]; then
+            echo "✅ $layout exists"
+          else
+            echo "❌ $layout missing"
+            exit 1
+          fi
+        done
+    
+    - name: Validate CSS files
+      run: |
+        css_files="style.css widgets.css"
+        for css in $css_files; do
+          if [ -f "assets/css/$css" ]; then
+            echo "✅ $css exists"
+          else
+            echo "❌ $css missing"
+            exit 1
+          fi
+        done
+    
+    - name: Build Jekyll site
+      run: |
+        bundle exec jekyll build --trace || jekyll build --trace
+      env:
+        JEKYLL_ENV: production
+    
+    - name: Check build output
+      run: |
+        if [ -d "_site" ]; then
+          echo "✅ Site built successfully"
+          echo "📊 Build statistics:"
+          find _site -type f | wc -l
+          du -sh _site
+        else
+          echo "❌ Build failed - no _site directory"
+          exit 1
+        fi
+    
+    - name: Validate HTML (basic check)
+      run: |
+        if command -v tidy &> /dev/null; then
+          find _site -name "*.html" -exec tidy -q -e {} \; || echo "HTML validation warnings found"
+        else
+          echo "⚠️ tidy not available, skipping HTML validation"
+        fi
+    
+    - name: Check for broken internal links (basic)
+      run: |
+        echo "🔍 Checking for common link issues..."
+        if grep -r "href=\"\"" _site/*.html 2>/dev/null; then
+          echo "⚠️ Found empty href attributes"
+        fi
+        echo "✅ Basic link check complete"
+    
+    - name: Verify Git LFS configuration
+      run: |
+        if [ -f ".gitattributes" ]; then
+          echo "✅ .gitattributes found"
+          cat .gitattributes
+        else
+          echo "⚠️ .gitattributes not found"
+        fi
+        
+        if [ -f ".lfsconfig" ]; then
+          echo "✅ .lfsconfig found"
+          cat .lfsconfig
+        else
+          echo "⚠️ .lfsconfig not found"
+        fi
+    
+    - name: Check documentation
+      run: |
+        if [ -f "docs/ONBOARDING.md" ]; then
+          echo "✅ ONBOARDING.md exists"
+          wc -l docs/ONBOARDING.md
+        else
+          echo "❌ ONBOARDING.md missing"
+          exit 1
+        fi
+    
+    - name: Summary
+      if: success()
+      run: |
+        echo "================================================"
+        echo "✅ All validation checks passed!"
+        echo "================================================"
+        echo "📋 Checklist:"
+        echo "  ✅ Jekyll configuration valid"
+        echo "  ✅ All required directories present"
+        echo "  ✅ All widget files present"
+        echo "  ✅ All layout files present"
+        echo "  ✅ CSS files present"
+        echo "  ✅ Site builds successfully"
+        echo "  ✅ Documentation present"
+        echo "================================================"

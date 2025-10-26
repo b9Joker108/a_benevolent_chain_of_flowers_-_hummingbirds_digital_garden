@@ -1,0 +1,101 @@
+---
+layout: default
+---
+
+<article class="onboarding-page">
+  <header class="onboarding-header">
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}
+      <p class="lead">{{ page.description }}</p>
+    {% endif %}
+  </header>
+  
+  <div class="onboarding-content">
+    {{ content }}
+  </div>
+  
+  <aside class="onboarding-sidebar">
+    <nav class="onboarding-nav">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#widgets">Using Widgets</a></li>
+        <li><a href="#layouts">Layouts</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#git-lfs">Git LFS Setup</a></li>
+      </ul>
+    </nav>
+    
+    <div class="onboarding-help">
+      <h3>Need Help?</h3>
+      <p>Check the <a href="{{ '/examples/' | relative_url }}">examples directory</a> for working demos.</p>
+    </div>
+  </aside>
+</article>
+
+<style>
+  .onboarding-page {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .onboarding-header {
+    grid-column: 1 / -1;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e1e4e8;
+  }
+  
+  .onboarding-header .lead {
+    font-size: 1.25rem;
+    color: #586069;
+  }
+  
+  .onboarding-content {
+    grid-column: 1;
+  }
+  
+  .onboarding-sidebar {
+    grid-column: 2;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+  
+  .onboarding-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .onboarding-nav li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .onboarding-nav a {
+    text-decoration: none;
+    color: #0366d6;
+  }
+  
+  .onboarding-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .onboarding-help {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #f6f8fa;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 768px) {
+    .onboarding-page {
+      grid-template-columns: 1fr;
+    }
+    
+    .onboarding-sidebar {
+      position: static;
+    }
+  }
+</style>

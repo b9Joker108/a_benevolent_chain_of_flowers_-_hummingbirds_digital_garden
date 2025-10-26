@@ -1,0 +1,77 @@
+# Jekyll Configuration
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, restart the server.
+
+# Site settings
+title: "Beauford A. Stenberg's Digital Garden"
+description: >-
+  A digital garden showcasing modular widgets, tile layouts, 
+  and rich multimedia content management.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .git/
+  - .gitattributes
+  - .lfsconfig
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .github/
+  - README.md
+
+# Include directories and files
+include:
+  - _includes/
+  - _layouts/
+  - assets/
+
+# Collections (optional - for future expansion)
+# collections:
+#   notes:
+#     output: true
+#     permalink: /notes/:name
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: "docs"
+    values:
+      layout: "onboarding"
+  - scope:
+      path: "examples"
+    values:
+      layout: "default"
+
+# Permalink structure
+permalink: pretty
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Sass/SCSS settings
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Timezone
+timezone: America/New_York
