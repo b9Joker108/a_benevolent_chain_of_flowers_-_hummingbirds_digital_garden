@@ -24,12 +24,14 @@ This digital garden is built with Jekyll and includes several modular components
 The video widget supports both YouTube embeds and direct HTML5 video files:
 
 ```liquid
+{% raw %}
 {% include widgets/video-widget.html 
    id="demo-video" 
    title="Demo Video" 
    source="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
    caption="Watch this demo"
    caption_url="/more-info" %}
+{% endraw %}
 ```
 
 **Parameters:**
@@ -50,11 +52,13 @@ The video widget supports both YouTube embeds and direct HTML5 video files:
 The audio widget provides streaming audio playback:
 
 ```liquid
+{% raw %}
 {% include widgets/audio-widget.html 
    id="podcast" 
    title="Episode 1" 
    source="https://example.com/audio/episode1.mp3"
    caption="Latest episode" %}
+{% endraw %}
 ```
 
 **Parameters:**
@@ -72,12 +76,14 @@ The audio widget provides streaming audio playback:
 Link to Obsidian vault notes or display excerpts:
 
 ```liquid
+{% raw %}
 {% include widgets/obsidian-widget.html 
    id="project-note" 
    title="Project Structure" 
    vault_url="obsidian://open?vault=MyVault&file=project"
    excerpt="Quick reference to project organization"
    content="# Overview\n\nKey points about the project..." %}
+{% endraw %}
 ```
 
 **Parameters:**
@@ -92,8 +98,8 @@ Link to Obsidian vault notes or display excerpts:
 
 Create responsive grid layouts for your content:
 
-```liquid
-{% include widgets/tile-layout.html columns=3 gap="medium" %}
+```html
+<div class="tile-layout tile-layout-grid tile-columns-3 tile-gap-medium">
   <div class="tile">
     <h3>Tile 1</h3>
     <p>Content here</p>
@@ -102,7 +108,7 @@ Create responsive grid layouts for your content:
     <h3>Tile 2</h3>
     <p>More content</p>
   </div>
-{% endinclude %}
+</div>
 ```
 
 **Parameters:**

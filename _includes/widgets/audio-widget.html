@@ -10,17 +10,17 @@
     - autoplay: whether to autoplay (default: false)
   
   Usage:
-    {% include widgets/audio-widget.html 
+    {percent include widgets/audio-widget.html 
        id="my-audio" 
        title="Podcast Episode" 
        source="/assets/audio/episode.mp3"
-       caption="Listen to our latest episode" %}
+       caption="Listen to our latest episode" percent}
   
   Note: This widget uses placeholder references only. Actual audio files should be
         managed via Git LFS and referenced from external storage.
 -->
 
-{% assign audio_id = include.id | default: "audio-" | append: forloop.index %}
+{% assign audio_id = include.id | default: "audio-widget" %}
 {% assign audio_title = include.title | default: "Audio" %}
 {% assign audio_source = include.source %}
 {% assign audio_caption = include.caption %}

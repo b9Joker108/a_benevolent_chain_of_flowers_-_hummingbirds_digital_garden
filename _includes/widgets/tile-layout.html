@@ -8,17 +8,18 @@
     - content: the content to be laid out in tiles (should contain tile elements)
   
   Usage in a page:
+    Set in front matter:
     ---
     layout: tile-layout
     tile_columns: 3
     tile_gap: medium
     ---
     
-    Or as an include:
-    {% include widgets/tile-layout.html columns=3 gap="medium" %}
+    Or use as HTML div:
+    <div class="tile-layout tile-layout-grid tile-columns-3 tile-gap-medium">
       <div class="tile">Content 1</div>
       <div class="tile">Content 2</div>
-    {% endinclude %}
+    </div>
   
   Note: Tiles should be wrapped in elements with class "tile"
 -->

@@ -10,14 +10,14 @@
     - caption_url: URL for caption link (optional)
   
   Usage:
-    {% include widgets/video-widget.html 
+    {percent include widgets/video-widget.html 
        id="my-video" 
        title="Demo Video" 
        source="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-       caption="Watch this demo" %}
+       caption="Watch this demo" percent}
 -->
 
-{% assign video_id = include.id | default: "video-" | append: forloop.index %}
+{% assign video_id = include.id | default: "video-widget" %}
 {% assign video_title = include.title | default: "Video" %}
 {% assign video_source = include.source %}
 {% assign video_poster = include.poster %}
