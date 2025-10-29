@@ -332,7 +332,7 @@ Citations:
 
 
 
-AgentArch: Comprehensive Benchmark for Agent Architectures - On intition, ungrounded with interrogation, it appears their flaw is one of non-gating and sign-off of workflows?
+AgentArch: Comprehensive Benchmark for Agent Architectures - On intition, ungrounded with interrogation, it appears their flaw is one of non-gating and robust sign-off of workflows?
 
 The AgentArch benchmark, according to recent insights from interviews with its creators and detailed framework descriptions, focuses primarily on evaluating agentic AI systems based on their ability to perform complex enterprise workflows in simulated real-world environments. 
 
