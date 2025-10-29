@@ -653,3 +653,4 @@ Intertextuality
 
 https://www.shazam.com/track/416910679/p-h-u-k?referrer=share
 
+[![Video thumbnail](assets/thumbnail-1920x1080.jpg "Watch on YouTube")](https://youtu.be/BGYZp3QqhqE?si=px79ol3m3GML98jH)
