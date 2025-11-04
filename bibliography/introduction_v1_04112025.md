@@ -7,3 +7,5 @@ File: https://github.com/b9Joker108/a_benevolent_chain_of_flowers_-_hummingbirds
 * https://wiki.p2pfoundation.net/Commons
 * https://p2pfoundation.net/
 * A new style of Village Green, styled P2P Foundation: https://p2pfoundation.net/the-p2pf-library
+* https://blog.p2pfoundation.net/
+* 
