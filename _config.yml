@@ -1,3 +1,5 @@
+# copilot/featurewidgets-and-onboarding
+
 # Jekyll Configuration
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, restart the server.
@@ -44,12 +46,45 @@ include:
 #     permalink: /notes/:name
 
 # Defaults
+=======
+# Site settings
+title: Beauford A. Stenberg's Digital Garden
+description: A benevolent chain of flowers - hummingbirds digital garden
+baseurl: ""
+url: ""
+
+# Author settings
+author:
+  name: Beauford A. Stenberg
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Collections for digital garden
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+  seeds:
+    output: true
+    permalink: /seeds/:name/
+  thoughts:
+    output: true
+    permalink: /thoughts/:name/
+
+# Default front matter
+
+# main
 defaults:
   - scope:
       path: ""
     values:
       layout: "default"
   - scope:
+
+
+# copilot/featurewidgets-and-onboarding
       path: "docs"
     values:
       layout: "onboarding"
@@ -75,3 +110,29 @@ sass:
 
 # Timezone
 timezone: America/New_York
+=======
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "seeds"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "thoughts"
+    values:
+      layout: "note"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE
+
+# main

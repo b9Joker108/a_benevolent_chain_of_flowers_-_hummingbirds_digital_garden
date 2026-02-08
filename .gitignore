@@ -1,3 +1,4 @@
+
 # Jekyll build outputs
 _site/
 .jekyll-cache/
@@ -12,6 +13,19 @@ Gemfile.lock
 node_modules/
 package-lock.json
 yarn.lock
+=======
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby
+.bundle/
+vendor/
+*.gem
+
+main
 
 # OS files
 .DS_Store
@@ -30,3 +44,11 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+=======
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+main
