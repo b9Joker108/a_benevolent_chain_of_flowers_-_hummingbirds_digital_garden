@@ -1,0 +1,56 @@
+# Site settings
+title: Beauford A. Stenberg's Digital Garden
+description: A benevolent chain of flowers - hummingbirds digital garden
+baseurl: ""
+url: ""
+
+# Author settings
+author:
+  name: Beauford A. Stenberg
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Collections for digital garden
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+  seeds:
+    output: true
+    permalink: /seeds/:name/
+  thoughts:
+    output: true
+    permalink: /thoughts/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "seeds"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+      type: "thoughts"
+    values:
+      layout: "note"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE

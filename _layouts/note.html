@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<article class="note">
+    <header>
+        <h1>{{ page.title }}</h1>
+        {% if page.date %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        {% endif %}
+        {% if page.tags %}
+        <div class="tags">
+            {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+    
+    <div class="content">
+        {{ content }}
+    </div>
+    
+    {% if page.related %}
+    <aside class="related">
+        <h2>Related Notes</h2>
+        <ul>
+            {% for link in page.related %}
+            <li><a href="{{ link }}">{{ link }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+    {% endif %}
+</article>
