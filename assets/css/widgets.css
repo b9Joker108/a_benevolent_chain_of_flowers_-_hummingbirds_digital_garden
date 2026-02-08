@@ -1,0 +1,245 @@
+/* 
+ * Widget Styles
+ * Styles for video, audio, Obsidian, and tile layout widgets
+ */
+
+/* ===== Video Widget ===== */
+.video-widget {
+  margin: 2rem 0;
+  max-width: 100%;
+}
+
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-responsive iframe,
+.video-responsive object,
+.video-responsive embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-player {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+.video-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #586069;
+  font-style: italic;
+}
+
+.video-caption a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.video-caption a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Audio Widget ===== */
+.audio-widget {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f6f8fa;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+}
+
+.audio-player-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.audio-player {
+  width: 100%;
+  max-width: 100%;
+}
+
+.audio-title {
+  font-weight: 600;
+  color: #24292e;
+  font-size: 1rem;
+}
+
+.audio-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #586069;
+  font-style: italic;
+}
+
+.audio-caption a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.audio-caption a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Obsidian Widget ===== */
+.obsidian-widget {
+  margin: 2rem 0;
+}
+
+.obsidian-card {
+  border: 2px solid #7c3aed;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.obsidian-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+.obsidian-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.obsidian-icon {
+  font-size: 1.5rem;
+}
+
+.obsidian-title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #5b21b6;
+}
+
+.obsidian-excerpt {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.obsidian-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 3px solid #7c3aed;
+}
+
+.obsidian-link {
+  margin-top: 1rem;
+}
+
+.obsidian-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #7c3aed;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-weight: 500;
+}
+
+.obsidian-button:hover {
+  background: #6d28d9;
+  text-decoration: none;
+}
+
+.obsidian-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* ===== Tile Layout ===== */
+.tile-layout {
+  margin: 2rem 0;
+}
+
+.tile {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tile h2,
+.tile h3 {
+  margin-top: 0;
+  color: #24292e;
+}
+
+.tile p {
+  color: #586069;
+  line-height: 1.6;
+}
+
+.tile img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .video-widget,
+  .audio-widget,
+  .obsidian-widget {
+    margin: 1rem 0;
+  }
+  
+  .obsidian-card {
+    padding: 1rem;
+  }
+  
+  .tile {
+    padding: 1rem;
+  }
+}
+
+/* ===== Accessibility ===== */
+.video-widget:focus-within,
+.audio-widget:focus-within,
+.obsidian-card:focus-within {
+  outline: 2px solid #0366d6;
+  outline-offset: 2px;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .video-widget iframe,
+  .audio-player {
+    display: none;
+  }
+  
+  .video-widget::after,
+  .audio-widget::after {
+    content: " [Media content not available in print]";
+    font-style: italic;
+    color: #586069;
+  }
+}

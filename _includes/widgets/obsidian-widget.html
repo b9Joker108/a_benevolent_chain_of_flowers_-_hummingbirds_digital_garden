@@ -1,0 +1,63 @@
+<!--
+  Obsidian Widget - Embed Obsidian notes or vault references
+  
+  Parameters:
+    - id: unique identifier for the widget
+    - title: note title
+    - vault_url: URL to the Obsidian vault or note (obsidian:// protocol or web link)
+    - content: optional markdown content to display inline
+    - caption: caption text (optional)
+    - excerpt: excerpt or preview text
+  
+  Usage:
+    {percent include widgets/obsidian-widget.html 
+       id="my-note" 
+       title="Project Notes" 
+       vault_url="obsidian://open?vault=MyVault&file=project-notes"
+       excerpt="Quick reference to project structure" percent}
+  
+  Note: This widget provides a link to Obsidian notes. It does not import or
+        embed actual vault contents at build time.
+-->
+
+{% assign obs_id = include.id | default: "obsidian-widget" %}
+{% assign obs_title = include.title | default: "Obsidian Note" %}
+{% assign vault_url = include.vault_url %}
+{% assign obs_content = include.content %}
+{% assign obs_caption = include.caption %}
+{% assign obs_excerpt = include.excerpt %}
+
+<div class="obsidian-widget" id="{{ obs_id }}-container">
+  <div class="obsidian-card">
+    <div class="obsidian-header">
+      <span class="obsidian-icon">🔗</span>
+      <h3 class="obsidian-title">{{ obs_title }}</h3>
+    </div>
+    
+    {% if obs_excerpt %}
+      <div class="obsidian-excerpt">
+        {{ obs_excerpt }}
+      </div>
+    {% endif %}
+    
+    {% if obs_content %}
+      <div class="obsidian-content">
+        {{ obs_content | markdownify }}
+      </div>
+    {% endif %}
+    
+    {% if vault_url %}
+      <div class="obsidian-link">
+        <a href="{{ vault_url }}" class="obsidian-button">
+          Open in Obsidian
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  
+  {% if obs_caption %}
+    <div class="obsidian-caption">
+      {{ obs_caption }}
+    </div>
+  {% endif %}
+</div>

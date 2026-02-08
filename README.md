@@ -123,6 +123,119 @@ Inspired by the digital gardening movement and the idea that knowledge should gr
 *"The glory of gardening: hands in the dirt, head in the sun, heart with nature."*
 =======
 # a_benevolent_chain_of_flowers_-_hummingbirds_digital_garden
+
+# copilot/featurewidgets-and-onboarding
+
+Beauford A. Stenberg's digital garden 🌺🌼🌸
+
+A Jekyll-powered digital garden featuring modular widgets for rich multimedia content, tile-based layouts, and seamless integration with external tools like Obsidian.
+
+## 🚀 Quick Start
+
+This repository includes scaffolding for:
+
+- **Modular Widgets**: Video (YouTube & HTML5), Audio, and Obsidian note embedding
+- **Tile Layouts**: Responsive grid and masonry layouts for content organization
+- **Git LFS Support**: Configuration for managing large audio/video files
+- **CI Validation**: Automated GitHub Actions workflow for quality checks
+
+## 📚 Documentation
+
+- **[Onboarding Guide](docs/ONBOARDING.md)** - Comprehensive guide to using all features
+- **[Examples](examples/)** - Working demonstrations of all widgets and layouts
+  - [Video Widget Demo](examples/video-demo.md)
+  - [Audio Widget Demo](examples/audio-demo.md)
+  - [Obsidian Widget Demo](examples/obsidian-demo.md)
+  - [Tile Layout Demo](examples/tile-demo.md)
+
+## 🧩 Widgets Scaffolding
+
+This repository provides ready-to-use widget templates:
+
+### Video Widget
+Embed YouTube videos or HTML5 video players with lazy loading and responsive design.
+
+```liquid
+{% include widgets/video-widget.html 
+   id="my-video" 
+   title="Video Title" 
+   source="https://www.youtube.com/watch?v=VIDEO_ID" %}
+```
+
+### Audio Widget
+Stream audio content with HTML5 audio controls.
+
+```liquid
+{% include widgets/audio-widget.html 
+   id="my-audio" 
+   title="Audio Title" 
+   source="/assets/audio/file.mp3" %}
+```
+
+### Obsidian Widget
+Link to Obsidian vault notes with previews.
+
+```liquid
+{% include widgets/obsidian-widget.html 
+   id="my-note" 
+   title="Note Title" 
+   vault_url="obsidian://open?vault=MyVault&file=Note" %}
+```
+
+### Tile Layout
+Create responsive grid layouts for your content.
+
+```html
+<div class="tile-layout tile-layout-grid tile-columns-3 tile-gap-medium">
+  <div class="tile">Content here</div>
+</div>
+```
+
+## 🛠️ Local Development
+
+1. Install Jekyll and dependencies:
+   ```bash
+   gem install bundler jekyll
+   bundle install
+   ```
+
+2. Run the development server:
+   ```bash
+   bundle exec jekyll serve
+   ```
+
+3. Visit `http://localhost:4000` in your browser
+
+## 📦 Git LFS Setup
+
+For managing large media files (audio/video):
+
+1. Install Git LFS: `brew install git-lfs` (macOS) or `apt-get install git-lfs` (Linux)
+2. Enable LFS: `git lfs install`
+3. Verify tracking: `git lfs track`
+
+See the [Onboarding Guide](docs/ONBOARDING.md#git-lfs) for detailed instructions.
+
+## 🧪 Testing
+
+The repository includes a CI workflow (`.github/workflows/validate.yml`) that:
+- Validates Jekyll configuration
+- Checks for required files and directories
+- Builds the site
+- Performs basic quality checks
+
+## 📝 License
+
+See [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions welcome! Please open an issue or submit a pull request.
+
+---
+
+**Happy gardening! 🌺**
+=======
 Beauford A. Stenberg's digital garden
 
 I use git on GitHub. I write and research and document my research and publish it in innumerable evergreen/living documents in my GitHub repositories. I use GenerativeAI to help scaffold that which is of interest. I am interested in how I could code a personal, sovereign, GenAI underwriter that is trained on my research and editing style from examples of my work (static), but particularly, my dynamic and incremental editing and crafting captured piecemeal and in toto due to the grace of git. I wish this to be a mechanism integrated with my GitHub repo digital garden. Now, my question is not regarding GenAI, at all per se, it is in regards to the tooling and architecture that I needmust generate and supply to a sovereign GenAI agent(s) or agentic cascade and fit with GitHub parameters and exigencies and contingencies arising. I favour: Termux, Android, Debian GNU/Linux, Python, TS/JS, Ruby, Go, Bash, Zsh, Nu. Technical, Open Source (ideologically, tempered with pragmatism) sovereignty and future-proofing as a driver to engineering and design.
@@ -778,3 +891,5 @@ Intertextuality
 https://www.shazam.com/track/416910679/p-h-u-k?referrer=share
 
 [![Video thumbnail](assets/thumbnail-1920x1080.jpg "Watch on YouTube")](https://youtu.be/BGYZp3QqhqE?si=px79ol3m3GML98jH)
+
+
